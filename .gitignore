@@ -3,8 +3,6 @@
 .env.local
 .env.*.local
 node_modules/
-git rm --cached .env 
-
 
 # IDE and editor files
 .vscode/
@@ -14,3 +12,4 @@ git rm --cached .env
 
 # Logs
 *.log
+.qodo
