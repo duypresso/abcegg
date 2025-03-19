@@ -2,7 +2,7 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const mainConfig = {
-  mode: process.env.NODE_ENV || 'development',
+  mode: 'development',
   entry: './src/main/main.ts',
   target: 'electron-main',
   output: {
@@ -13,13 +13,8 @@ const mainConfig = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true
-          }
-        },
-        exclude: /node_modules/
+        use: 'ts-loader',
+        exclude: /node_modules/,
       }
     ]
   },
@@ -29,8 +24,8 @@ const mainConfig = {
 };
 
 const rendererConfig = {
-  mode: process.env.NODE_ENV || 'development',
-  entry: './src/renderer/index.tsx',
+  mode: 'development',
+  entry: './src/renderer/index.tsx',  // Changed from index.ts to index.tsx
   target: 'electron-renderer',
   output: {
     path: path.resolve(__dirname, 'dist/renderer'),
@@ -41,13 +36,8 @@ const rendererConfig = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true
-          }
-        },
-        exclude: /node_modules/
+        use: 'ts-loader',
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -67,10 +57,11 @@ const rendererConfig = {
         },
         { 
           from: 'assets',
-          to: '../assets'
+          to: 'assets',
+          noErrorOnMissing: true
         }
-      ]
-    })
+      ],
+    }),
   ]
 };
 

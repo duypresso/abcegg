@@ -6,7 +6,7 @@ async function clearCache() {
   try {
     await ses.clearCache();
     await ses.clearStorageData({
-      storages: ['shadercache', 'cachestorage', 'localstorage', 'cookies']
+      storages: ['appcache', 'shadercache', 'cachestorage', 'localstorage', 'cookies']
     });
     console.log('Cache cleared successfully');
   } catch (err) {
@@ -20,26 +20,19 @@ function createWindow() {
     height: 768,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
-      webSecurity: false
+      contextIsolation: false
     },
     // Frameless window settings
     frame: false,
     transparent: false,
     backgroundColor: '#f0f7ff',
     title: '🎯 Alphabet Learning Game',
-    icon: path.join(__dirname, '../assets/icon/icon.ico'),
+    icon: path.join(__dirname, '../assets/icon.png'),
     fullscreen: true, // Start in fullscreen
     kiosk: true // Prevent leaving fullscreen
   });
 
-  // In development, use the file protocol
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
-  } else {
-    // In production (packaged app), use the correct path
-    mainWindow.loadFile(path.join(__dirname, 'renderer/index.html'));
-  }
+  mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
 
   // Handle window controls
   ipcMain.on('window-minimize', () => {
@@ -61,11 +54,6 @@ function createWindow() {
   mainWindow.on('leave-full-screen', () => {
     mainWindow.setFullScreen(true);
   });
-
-  // Open DevTools in development
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.webContents.openDevTools();
-  }
 }
 
 app.whenReady().then(async () => {

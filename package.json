@@ -5,13 +5,10 @@
   "scripts": {
     "start": "electron .",
     "clean": "rimraf dist",
-    "build": "cross-env NODE_ENV=production npm run clean && webpack --config webpack.config.js",
-    "dev": "cross-env NODE_ENV=development webpack --config webpack.config.js --watch",
+    "build": "npm run clean && webpack --config webpack.config.js",
+    "dev": "webpack --config webpack.config.js --watch",
     "server": "ts-node src/server/index.ts",
-    "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
-    "package": "npm run build && electron-packager . AlphabetGame --platform=win32 --arch=x64 --out=release-builds --overwrite --icon=assets/icon/icon.ico --asar --ignore=node_modules/electron-* --ignore=src/* --ignore=.git/*",
-    "package-mac": "npm run build && electron-packager . AlphabetGame --platform=darwin --arch=x64 --out=release-builds --overwrite --icon=assets/icon/icon.ico --asar --ignore=node_modules/electron-* --ignore=src/* --ignore=.git/*",
-    "package-linux": "npm run build && electron-packager . AlphabetGame --platform=linux --arch=x64 --out=release-builds --overwrite --icon=assets/icon/icon.ico --asar --ignore=node_modules/electron-* --ignore=src/* --ignore=.git/*"
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\""
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -31,10 +28,8 @@
     "canvas": "^3.1.0",
     "concurrently": "^8.2.2",
     "copy-webpack-plugin": "^11.0.0",
-    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "electron": "^35.0.2",
-    "electron-packager": "^17.1.2",
     "rimraf": "^6.0.1",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.0",
