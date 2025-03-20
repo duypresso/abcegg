@@ -12,7 +12,6 @@ A fun and interactive game for children to learn the alphabet through egg-breaki
 - Full-screen support
 - Particle effects and celebrations
 
-- ![image](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfHlcmASZgNOAA0mtIwob78oSLwGP1PybjDQ&s)
 
 ## Tech Stack
 
